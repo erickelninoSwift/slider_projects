@@ -1,5 +1,6 @@
 import React from "react";
 import { shortList, list, longList } from "../data";
+import { useState } from "react";
 
 export const Carousel = () => {
   const [myShortList, setMyshortList] = useState(shortList);
@@ -11,7 +12,16 @@ export const Carousel = () => {
   console.log(myLongList);
   return (
     <>
-      <h2>Hello my friend</h2>
+      <section className="slider-container">
+        {shortList.map((person) => {
+          const { id, image, name, title, quote } = person;
+          return <article className="slide" key={id}></article>;
+        })}
+      </section>
+      <div>
+        <button onClick={() => console.log("Preview")}>Prev</button>
+        <button onClick={() => console.log("Next")}>Next</button>
+      </div>
     </>
   );
 };
