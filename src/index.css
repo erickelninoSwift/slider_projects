@@ -371,6 +371,7 @@ ul {
   position: relative;
   height: 450px;
   /* background-color: lightblue; */
+  /* overflow: hidden; */
 }
 
 .slide {
@@ -453,4 +454,7 @@ ul {
     height: 2rem;
     font-size: 1.3rem;
   }
+}
+.next-slide {
+  transform: translateX(100%);
 }

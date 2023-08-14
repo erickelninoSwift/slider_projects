@@ -8,6 +8,7 @@ export const Carousel = () => {
   const [myShortList, setMyshortList] = useState(shortList);
   const [myList, setList] = useState(list);
   const [myLongList, setMyLongList] = useState(longList);
+  const [currentPerson, setCurrentPerson] = useState(null);
 
   console.log(myShortList);
   console.log(list);
@@ -23,10 +24,14 @@ export const Carousel = () => {
   return (
     <>
       <section className="slider-container">
-        {shortList.map((person) => {
+        {myList.map((person, personIndex) => {
           const { id, image, name, title, quote } = person;
           return (
-            <article className="slide" key={id}>
+            <article
+              className="slide next-slide"
+              style={{ transform: `translate(${100 * personIndex}%)` }}
+              key={id}
+            >
               <img src={image} alt={title} className="person-img" />
               <h5 className="name">{name}</h5>
               <p className="title">{title}</p>
