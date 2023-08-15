@@ -1,6 +1,6 @@
 import React from "react";
 import { shortList, list, longList } from "../data";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 
@@ -8,19 +8,34 @@ export const Carousel = () => {
   const [myShortList, setMyshortList] = useState(shortList);
   const [myList, setList] = useState(list);
   const [myLongList, setMyLongList] = useState(longList);
-  const [currentPerson, setCurrentPerson] = useState(null);
+  const [currentPerson, setCurrentPerson] = useState(0);
 
   console.log(myShortList);
   console.log(list);
   console.log(myLongList);
 
   function PrevieSlide() {
-    console.log("Previious");
+    setCurrentPerson((data) => {
+      return data < 1 ? myList.length - 1 : data - 1;
+    });
   }
 
   function NextSlide() {
-    console.log("NextSlide");
+    setCurrentPerson((data) => {
+      return data === myList.length - 1 ? 0 : data + 1;
+    });
   }
+
+  useEffect(() => {
+    const sliderID = setInterval(() => {
+      NextSlide();
+    }, 2500);
+
+    return () => {
+      clearInterval(sliderID);
+    };
+  }, [currentPerson]);
+
   return (
     <>
       <section className="slider-container">
@@ -29,7 +44,12 @@ export const Carousel = () => {
           return (
             <article
               className="slide next-slide"
-              style={{ transform: `translate(${100 * personIndex}%)` }}
+              style={{
+                transform: `translate(${100 * (personIndex - currentPerson)}%)`,
+                opacity: `${currentPerson === personIndex ? "1" : "0"}`,
+                visibility:
+                  currentPerson === personIndex ? "visible" : "hidden",
+              }}
               key={id}
             >
               <img src={image} alt={title} className="person-img" />

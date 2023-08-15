@@ -371,7 +371,7 @@ ul {
   position: relative;
   height: 450px;
   /* background-color: lightblue; */
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .slide {
@@ -415,7 +415,7 @@ ul {
 }
 
 .icon {
-  font-size: 2rem;
+  font-size: 3rem;
   color: var(--primary-700);
   margin-top: 1rem;
 }
@@ -457,4 +457,24 @@ ul {
 }
 .next-slide {
   transform: translateX(100%);
+}
+/* ============Slick Carousel======================= */
+
+.slick-carousel {
+  margin: 0 auto;
+  margin-top: 12rem;
+  width: 80vw;
+  max-width: 800px;
+  height: 450px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.slick-prev::before {
+  color: var(--primary-600) !important;
+}
+.slick-next::before {
+  color: var(--primary-600) !important;
 }
